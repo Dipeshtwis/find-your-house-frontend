@@ -16,7 +16,9 @@ export default class Registration extends Component {
   }
 
   handleChange(e) {
-    console.log("handle change", e)
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   handleSubmit(event) {
