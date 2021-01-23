@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class Registration extends Component {
   constructor(props) {
@@ -6,6 +7,7 @@ export default class Registration extends Component {
 
     this.state = {
       username: "",
+      email: "",
       password: "",
       password_confirmation: "",
       registrationErrors: ""
@@ -18,11 +20,33 @@ export default class Registration extends Component {
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
-    })
+    });
   }
 
   handleSubmit(event) {
-    console.log("form submitted");
+    const {
+      username,
+      email,
+      password,
+      password_confirmation
+    } = this.state;
+
+    axios.post("http://localhost:3001/registrations", {
+      user: {
+        username: username,
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation
+      }
+    },
+    { withCredentials: true }
+    )
+    .then(res => {
+      console.log("registration res", res);
+    })
+    .catch(err => {
+      console.log("registration error", err);
+    });
     event.preventDefault();
   }
 
