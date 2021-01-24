@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import axios from 'axios';
 import Home from '../containers/Home';
 import Dashboard from '../containers/Dashboard';
 
@@ -13,6 +14,22 @@ export default class App extends Component {
     };
 
     this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  checkLoginStatus() {
+    axios.get("http://localhost:3001/logged_in", {
+      withCredentials: true
+    })
+    .then(res => {
+      console.log("logged_in?", res);
+    })
+    .catch(err => {
+      console.log("check login error", err);
+    });
+  }
+
+  componentDidMount() {
+    this.checkLoginStatus();
   }
 
   handleLogin(data) {
