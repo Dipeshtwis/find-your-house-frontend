@@ -21,7 +21,18 @@ export default class App extends Component {
       withCredentials: true
     })
     .then(res => {
-      console.log("logged_in?", res);
+      if(res.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
+        this.setState({
+          loggedInStatus: "LOGGED_IN",
+          user: res.data.user
+        })
+      }
+      else if (!res.data.logged_in && this.state.loggedInStatus === "LOGGED_IN") {
+        this.setState({
+          loggedInStatus: "NOT_LOGGED_IN",
+          user: {}
+        })
+      }
     })
     .catch(err => {
       console.log("check login error", err);
@@ -35,7 +46,7 @@ export default class App extends Component {
   handleLogin(data) {
     this.setState({
       loggedInStatus: "LOGGED_IN",
-      user: data
+      user: data.user
     })
   }
 
