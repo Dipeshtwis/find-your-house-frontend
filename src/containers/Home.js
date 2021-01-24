@@ -9,6 +9,7 @@ export default class Home extends Component {
   }
 
   handleSuccessfulAuth(data) {
+  	this.props.handleLogin(data);
     this.props.history.push("/dashboard");
   }
 
