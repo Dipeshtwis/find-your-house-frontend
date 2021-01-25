@@ -1,37 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { API_ID, API_REGISTRATION } from '../api/railshouse';
 
-export default class Registration extends Component {
-  constructor(props) {
-    super(props);
+const Registration = props => {
+  const [state, setState] = useState({
+    username: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+    registrationErrors: ''
+  });
 
-    this.state = {
-      username: "",
-      email: "",
-      password: "",
-      password_confirmation: "",
-      registrationErrors: ""
-    }
+  const handleChange = ({ target: { name, value } }) => {
+    setState({ ...state, [name]: value });
+  };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
-  handleSubmit(event) {
-    const {
+  const {
       username,
       email,
       password,
       password_confirmation
-    } = this.state;
+    } = state;
 
+  const handleSubmit = event => {
     axios.post(`${API_ID}${API_REGISTRATION}`, {
       user: {
         username: username,
@@ -44,7 +35,7 @@ export default class Registration extends Component {
     )
     .then(res => {
       if (res.data.status === 'created') {
-        this.props.handleSuccessfulAuth(res.data);
+        props.handleSuccessfulAuth(res.data);
       }
     })
     .catch(err => {
@@ -53,50 +44,50 @@ export default class Registration extends Component {
     event.preventDefault();
   }
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={this.state.username}
-            onChange={this.handleChange}
-            required
-          />
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={state.username}
+          onChange={handleChange}
+          required
+        />
 
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            required
-          />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={state.email}
+          onChange={handleChange}
+          required
+        />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            required
-          />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={state.password}
+          onChange={handleChange}
+          required
+        />
 
-          <input
-            type="password"
-            name="password_confirmation"
-            placeholder="Password_confirmation"
-            value={this.state.password_confirmation}
-            onChange={this.handleChange}
-            required
-          />
+        <input
+          type="password"
+          name="password_confirmation"
+          placeholder="Password_confirmation"
+          value={state.password_confirmation}
+          onChange={handleChange}
+          required
+        />
 
-          <button type="submit">Register</button>
+        <button type="submit">Register</button>
 
-        </form>
-      </div>
-    );
-  }
+      </form>
+    </div>
+  );
 }
+
+export default Registration;

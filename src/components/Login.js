@@ -1,30 +1,21 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { API_ID, API_LOGIN } from '../api/railshouse';
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
+const Login = props => {
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+    loginErrors: ''
+  });
 
-    this.state = {
-      email: "",
-      password: "",
-      loginErrors: ""
-    }
+  const handleChange = ({ target: { name, value } }) => {
+    setState({ ...state, [name]: value });
+  };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+  const { email, password } = state;
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
-  handleSubmit(event) {
-    const { email, password } = this.state;
-
+  const handleSubmit = event => {
     axios.post(`${API_ID}${API_LOGIN}`, {
       user: {
         email: email,
@@ -35,7 +26,7 @@ export default class Login extends Component {
     )
     .then(res => {
       if (res.data.logged_in) {
-        this.props.handleSuccessfulAuth(res.data);
+        props.handleSuccessfulAuth(res.data);
       }
     })
     .catch(err => {
@@ -44,32 +35,32 @@ export default class Login extends Component {
     event.preventDefault();
   }
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            required
-          />
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={state.email}
+          onChange={handleChange}
+          required
+        />
 
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={this.state.password}
-            onChange={this.handleChange}
-            required
-          />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={state.password}
+          onChange={handleChange}
+          required
+        />
 
-          <button type="submit">Login</button>
+        <button type="submit">Login</button>
 
-        </form>
-      </div>
-    );
-  }
+      </form>
+    </div>
+  );
 }
+
+export default Login;

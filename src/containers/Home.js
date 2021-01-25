@@ -1,27 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Registration from '../components/Registration';
 import Login from '../components/Login';
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
+const Home = props => {
+  const { handleLogin, loggedInStatus } = props;
 
-    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+  const handleSuccessfulAuth = data => {
+  	handleLogin(data);
+    props.history.push("/dashboard");
   }
-
-  handleSuccessfulAuth(data) {
-  	this.props.handleLogin(data);
-    this.props.history.push("/dashboard");
-  }
-
-  render() {
-    return (
-      <>
-        <h1>Home</h1>
-        <h2>Status: {this.props.loggedInStatus}</h2>
-        <Registration handleSuccessfulAuth={this.handleSuccessfulAuth} />
-        <Login handleSuccessfulAuth={this.handleSuccessfulAuth} />
-      </>
-    );
-  }
+  
+  return (
+    <>
+      <h1>Home</h1>
+      <h2>Status: {loggedInStatus}</h2>
+      <Registration handleSuccessfulAuth={handleSuccessfulAuth} />
+      <Login handleSuccessfulAuth={handleSuccessfulAuth} />
+    </>
+  );
 }
+
+export default Home;
