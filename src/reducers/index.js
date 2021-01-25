@@ -3,7 +3,7 @@ import houseReducer from './house';
 import houseDetailReducer from './houseDetails';
 
 const rootReducer = combineReducers({
-  house: houseReducer,
+  houses: houseReducer,
   house_detail: houseDetailReducer, 
 });
 

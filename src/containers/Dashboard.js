@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { API_ID, API_LOGOUT, API_HOUSE } from '../api/railshouse';
 import { getHouseAction } from '../actions/index';
 import loader from '../assets/img/loader.gif';
+import HouseCard from '../components/HouseCard';
 
 const Dashboard = props => {
   const { loggedInStatus, handleLogout, getHouse, houses } = props;
 
-  useEffect(() => {
+  const fetchHouse = useCallback(() => {
     axios.get(`${API_ID}${API_HOUSE}`)
     .then(res => {
       getHouse(res.data);
@@ -17,7 +18,11 @@ const Dashboard = props => {
     .catch(err => {
       console.log("house fetching error", err);
     });
-  }, [getHouse])
+  }, [getHouse]);
+
+  useEffect(() => {
+    fetchHouse();
+  }, [fetchHouse]);
 
   const handleLogoutClick = () => {
   	axios.delete(`${API_ID}${API_LOGOUT}`, {
