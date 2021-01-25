@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import Home from '../containers/Home';
 import Dashboard from '../containers/Dashboard';
+import { API_ID, API_LOGIN_STATUS } from '../api/railshouse';
 
 export default class App extends Component {
   constructor() {
@@ -18,7 +19,7 @@ export default class App extends Component {
   }
 
   checkLoginStatus() {
-    axios.get("http://localhost:3001/logged_in", {
+    axios.get(`${API_ID}${API_LOGIN_STATUS}`, {
       withCredentials: true
     })
     .then(res => {

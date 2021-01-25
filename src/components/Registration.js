@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { API_ID, API_REGISTRATION } from '../api/railshouse';
 
 export default class Registration extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export default class Registration extends Component {
       password_confirmation
     } = this.state;
 
-    axios.post("http://localhost:3001/registrations", {
+    axios.post(`${API_ID}${API_REGISTRATION}`, {
       user: {
         username: username,
         email: email,

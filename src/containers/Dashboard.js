@@ -1,11 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import { API_ID, API_LOGOUT } from '../api/railshouse';
 
 const Dashboard = props => {
   const { loggedInStatus, handleLogout } = props;
   
   const handleLogoutClick = () => {
-  	axios.delete("http://localhost:3001/logout", {
+  	axios.delete(`${API_ID}${API_LOGOUT}`, {
   	  withCredentials: true
   	})
   	.then(res => {
