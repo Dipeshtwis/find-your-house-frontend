@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { API_ID, API_LOGOUT, API_HOUSE } from '../api/railshouse';
 import { getHouseAction } from '../actions/index';
+import loader from '../assets/img/loader.gif';
 
 const Dashboard = props => {
-  const { loggedInStatus, handleLogout, getHouse } = props;
-  const [houses, SetHouses] = useState([]);
+  const { loggedInStatus, handleLogout, getHouse, houses } = props;
 
   useEffect(() => {
     axios.get(`${API_ID}${API_HOUSE}`)
@@ -16,7 +17,7 @@ const Dashboard = props => {
     .catch(err => {
       console.log("house fetching error", err);
     });
-  }, [houses.length, getHouse])
+  }, [getHouse])
 
   const handleLogoutClick = () => {
   	axios.delete(`${API_ID}${API_LOGOUT}`, {
@@ -29,8 +30,24 @@ const Dashboard = props => {
   	.catch(err => {
   	  console.log("logout error", err);
   	});
-    
   }
+
+  const renderHelper = () => {
+      if (loggedInStatus === 'NOT_LOGGED_IN') {
+        return <Redirect to="/" />;
+      }
+
+      let res = null;
+      if (houses.length > 0) {
+        res = houses.map(house => (<HouseCard key={house.id} house={house} />));
+      } else {
+        res = (
+          <img src={loader} alt="loading..." />
+        );
+      }
+
+      return res;
+    }
 
   return (
     <>
@@ -39,12 +56,15 @@ const Dashboard = props => {
         <button onClick={() => handleLogoutClick()}>Logout</button>
         <h2>Status: {loggedInStatus}</h2>
       </div>
+      <div className="House">
+        {renderHelper()}
+      </div>
     </>
   );
 };
 
 const mapStateToProps = state => ({
-  house: state.house,
+  houses: state.houses,
 });
 
 const mapDispatchToProps = dispatch => ({
