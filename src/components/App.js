@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import Home from '../containers/Home';
 import Dashboard from '../containers/Dashboard';
+import HouseDetails from '../containers/HouseDetails';
 import { API_ID, API_LOGIN_STATUS } from '../api/railshouse';
 
 const App = props => {
@@ -69,6 +70,11 @@ const App = props => {
             render={props => (
               <Dashboard {...props} handleLogout={handleLogout} loggedInStatus={state.loggedInStatus} />
             )}
+          />
+          <Route
+            exact
+            path={"/dashboard/:id/:name"}
+            component={HouseDetails}
           />
         </Switch>
       </BrowserRouter>

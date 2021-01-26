@@ -5,7 +5,7 @@ const HouseCard = ({ house }) => {
   return (
     <div data-testid={house.id} className="card">
       <img src={house.photo} alt={house.name} />
-      <Link to={`/house/${house.id}/${house.name}`}>
+      <Link to={`/dashboard/${house.id}/${house.name}`}>
         <div className="content">
           <p>
             {' '}
