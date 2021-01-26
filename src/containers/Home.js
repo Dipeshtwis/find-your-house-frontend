@@ -1,21 +1,16 @@
 import React from 'react';
-import Registration from '../components/Registration';
-import Login from '../components/Login';
+import { Redirect, Link } from 'react-router-dom';
 
 const Home = props => {
-  const { handleLogin, loggedInStatus } = props;
-
-  const handleSuccessfulAuth = data => {
-  	handleLogin(data);
-    props.history.push("/dashboard");
+  if (localStorage.getItem('token')) {
+    return <Redirect to="/dashboard" />;
   }
-  
+
   return (
     <>
       <h1>Home</h1>
-      <h2>Status: {loggedInStatus}</h2>
-      <Registration handleSuccessfulAuth={handleSuccessfulAuth} />
-      <Login handleSuccessfulAuth={handleSuccessfulAuth} />
+      <Link to="/signup"> Sign up </Link>
+      <Link to="/login"> Login</Link>
     </>
   );
 }
