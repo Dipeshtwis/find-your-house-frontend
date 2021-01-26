@@ -50,6 +50,8 @@ const HouseDetails = props => {
               {' '}
             </h2>
 
+            <h3>{house.location}</h3>
+
             <p className="desc">
               {house.description}
               {' '}
@@ -62,6 +64,7 @@ const HouseDetails = props => {
 
   return (
     <>
+      <h2>House Details</h2>
       {renderHelper()}
     </>
   );
