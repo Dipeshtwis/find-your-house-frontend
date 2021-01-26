@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { getUserToken } from '../actions/index';
 import { API_ID, API_REGISTRATION } from '../api/railshouse';
 
@@ -13,6 +13,10 @@ const Registration = props => {
     password_confirmation: '',
     registrationErrors: ''
   });
+
+  if (localStorage.getItem('token')) {
+    return <Redirect to="/dashboard" />;
+  }
 
   const handleChange = ({ target: { name, value } }) => {
     setState({ ...state, [name]: value });
@@ -90,6 +94,9 @@ const Registration = props => {
         <button type="submit">Register</button>
 
       </form>
+
+      <Link to="/login"> Login</Link>
+      <Link to="/"> Back To Home</Link>
     </div>
   );
 };

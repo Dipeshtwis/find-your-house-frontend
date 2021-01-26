@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { getUserToken } from '../actions/index';
 import { API_ID, API_LOGIN } from '../api/railshouse';
 
@@ -67,6 +67,8 @@ const Login = props => {
         <button type="submit">Login</button>
 
       </form>
+      <Link to="/signup"> Sign up</Link>
+      <Link to="/"> Back To Home</Link>
     </div>
   );
 }

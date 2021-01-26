@@ -9,7 +9,7 @@ const Home = props => {
   return (
     <>
       <h1>Home</h1>
-      <Link to="/signup"> Sign up </Link>
+      <Link to="/signup"> Sign up</Link>
       <Link to="/login"> Login</Link>
     </>
   );
