@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { getHouseDetail } from '../actions/index';
 import { API_ID, API_HOUSE } from '../api/railshouse';
 
@@ -22,6 +23,10 @@ const HouseDetails = props => {
   }, [fetchHouseDetail]);
 
   const renderHelper = () => {
+  	if (!localStorage.getItem('token')) {
+      return <Redirect to="/" />;
+    }
+
     if(house_detail) {
       const house = house_detail;
       return (

@@ -2,13 +2,14 @@ import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { getUserToken } from '../actions/index';
 import { API_ID, API_LOGOUT, API_HOUSE } from '../api/railshouse';
 import { getHouseAction } from '../actions/index';
 import loader from '../assets/img/loader.gif';
 import HouseCard from '../components/HouseCard';
 
 const Dashboard = props => {
-  const { loggedInStatus, handleLogout, getHouse, houses } = props;
+  const { getHouse, houses, getUserToken } = props;
 
   const fetchHouse = useCallback(() => {
     axios.get(`${API_ID}${API_HOUSE}`)
@@ -29,8 +30,8 @@ const Dashboard = props => {
   	  withCredentials: true
   	})
   	.then(res => {
-  	  handleLogout();
-  	  props.history.push("/");
+  	  localStorage.removeItem('token');
+      getUserToken('');
   	})
   	.catch(err => {
   	  console.log("logout error", err);
@@ -38,7 +39,7 @@ const Dashboard = props => {
   }
 
   const renderHelper = () => {
-      if (loggedInStatus === 'NOT_LOGGED_IN') {
+      if (!localStorage.getItem('token')) {
         return <Redirect to="/" />;
       }
 
@@ -59,7 +60,6 @@ const Dashboard = props => {
       <div>
         <h1>Dashboard</h1>
         <button onClick={() => handleLogoutClick()}>Logout</button>
-        <h2>Status: {loggedInStatus}</h2>
       </div>
       <div className="House">
         {renderHelper()}
@@ -70,10 +70,12 @@ const Dashboard = props => {
 
 const mapStateToProps = state => ({
   houses: state.houses,
+  token: state.token,
 });
 
 const mapDispatchToProps = dispatch => ({
   getHouse: data => dispatch(getHouseAction(data)),
+  getUserToken: data => dispatch(getUserToken(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
