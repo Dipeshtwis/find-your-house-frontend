@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import { API_ID, API_LOGIN } from '../api/railshouse';
 
 const Login = props => {
@@ -26,7 +27,8 @@ const Login = props => {
     )
     .then(res => {
       if (res.data.logged_in) {
-        props.handleSuccessfulAuth(res.data);
+        localStorage.setItem('token', res.data.logged_in);
+        props.UserToken(res.data.logged_in);
       }
     })
     .catch(err => {
@@ -63,4 +65,14 @@ const Login = props => {
   );
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  token: state.token,
+});
+
+const mapDispatchToProps = dispatch => ({
+  UserToken: data => {
+    dispatch(UserToken(data));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
