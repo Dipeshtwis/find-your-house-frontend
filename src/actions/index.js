@@ -1,5 +1,6 @@
 export const HOUSE = 'HOUSE';
 export const HOUSEDETAIL = 'HOUSEDETAIL';
+export const USERTOKEN = 'USERTOKEN';
 
 export const getHouseAction = data => ({
   type: HOUSE,
@@ -9,4 +10,9 @@ export const getHouseAction = data => ({
 export const getHouseDetail = detail => ({
   type: HOUSEDETAIL,
   payload: detail,
+});
+
+export const getUserToken = token => ({
+  type: USERTOKEN,
+  payload: token,
 });

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { getUserToken } from '../actions/index';
 import { API_ID, API_LOGIN } from '../api/railshouse';
 
 const Login = props => {
@@ -9,6 +11,10 @@ const Login = props => {
     password: '',
     loginErrors: ''
   });
+
+  if (localStorage.getItem('token')) {
+    return <Redirect to="/dashboard" />;
+  }
 
   const handleChange = ({ target: { name, value } }) => {
     setState({ ...state, [name]: value });
@@ -28,7 +34,7 @@ const Login = props => {
     .then(res => {
       if (res.data.logged_in) {
         localStorage.setItem('token', res.data.logged_in);
-        props.UserToken(res.data.logged_in);
+        props.getUserToken(res.data.logged_in);
       }
     })
     .catch(err => {
@@ -70,8 +76,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  UserToken: data => {
-    dispatch(UserToken(data));
+  getUserToken: data => {
+    dispatch(getUserToken(data));
   },
 });
 
