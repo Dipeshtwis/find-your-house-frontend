@@ -1,21 +1,21 @@
-import React, { useCallBback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { getHouseDetail } from '../actions/index';
 import { API_ID, API_HOUSE } from '../api/railshouse';
 
 const HouseDetails = props => {
-  const { id, house_detail, getHouseDetail } = props
+  const { house_detail, getHouseDetail } = props
   
-  const fetchHouseDetail = useCallBback(() => {
-    axios.get(`${API_ID}${API_HOUSE}/${id}`)((props.match.params.id))
+  const fetchHouseDetail = useCallback(() => {
+    axios.get(`${API_ID}${API_HOUSE}/${props.match.params.id}`)
     .then(res => {
       getHouseDetail(res.data);
     })
     .catch(err => {
       console.log("house detail fetching error", err);
     });
-  }, [getHouseDetail]);
+  }, [getHouseDetail, props.match.params.id]);
 
   useEffect(() => {
     fetchHouseDetail();
@@ -25,10 +25,10 @@ const HouseDetails = props => {
     if(house_detail) {
       const house = house_detail;
       return (
-      	<div>
-          <div className="imgcont">
-            <img className="detimage" src={house.photo} alt={house.name} />
-            <h2 className="detprice">
+      	<div className="house-detail">
+          <div>
+            <img className="img" src={house.photo} alt={house.name} />
+            <h2 className="house-price">
               {' '}
               {house.price}
               {' '}
@@ -38,8 +38,8 @@ const HouseDetails = props => {
               {' '}
             </h2>
           </div>
-          <div className="det">
-            <h2 className="detname">
+          <div className="house-desc">
+            <h2>
               {' '}
               {house.name}
               {' '}
@@ -56,9 +56,9 @@ const HouseDetails = props => {
   };
 
   return (
-    <div className="house-detail">
+    <>
       {renderHelper()}
-    </div>
+    </>
   );
 };
 
