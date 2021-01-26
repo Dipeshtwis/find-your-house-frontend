@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { getUserToken } from '../actions/index';
 import { API_ID, API_REGISTRATION } from '../api/railshouse';
 
 const Registration = props => {
@@ -34,8 +37,9 @@ const Registration = props => {
     { withCredentials: true }
     )
     .then(res => {
-      if (res.data.status === 'created') {
-        props.handleSuccessfulAuth(res.data);
+      if (res.data.logged_in) {
+        localStorage.setItem('token', res.data.logged_in);
+        props.getUserToken(res.data.logged_in);
       }
     })
     .catch(err => {
@@ -88,6 +92,16 @@ const Registration = props => {
       </form>
     </div>
   );
-}
+};
 
-export default Registration;
+const mapStateToProps = state => ({
+  token: state.token,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getUserToken: data => {
+    dispatch(getUserToken(data));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);
