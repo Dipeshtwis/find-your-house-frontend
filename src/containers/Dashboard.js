@@ -7,6 +7,7 @@ import { API_ID, API_LOGOUT, API_HOUSE } from '../api/railshouse';
 import { getHouseAction } from '../actions/index';
 import loader from '../assets/img/loader.gif';
 import HouseCard from '../components/HouseCard';
+import '../assets/stylesheet/house.css';
 
 const Dashboard = props => {
   const { getHouse, houses, getUserToken } = props;
@@ -58,10 +59,10 @@ const Dashboard = props => {
   return (
     <>
       <div>
-        <h1>Dashboard</h1>
+        <h1>Houses</h1>
         <button onClick={() => handleLogoutClick()}>Logout</button>
       </div>
-      <div className="House">
+      <div className="house">
         {renderHelper()}
       </div>
     </>

@@ -35,10 +35,20 @@
 }
 
 .price {
-  margin-left: 170px;
+  margin-left: 90px;
 }
 
 .house-desc,
 .desc {
   margin-top: 20px;
+}
+
+@media screen only(min-width: 768px) {
+  .house-detail {
+    flex-direction: row;
+  }
+
+  .detail-header {
+    flex-direction: column;
+  }
 }

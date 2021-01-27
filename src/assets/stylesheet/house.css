@@ -1,0 +1,25 @@
+.house {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  border: 2px solid #cfd8dc;
+  padding: 5px;
+}
+
+.house-img {
+  width: 330px;
+  height: 250px;
+}
+
+.house-price {
+  margin-left: 90px;
+}
+
+.linker {
+  margin: 7px auto;
+}
