@@ -71,7 +71,7 @@ const Registration = props => {
           type="email"
           name="email"
           placeholder="Email"
-          className="input-cl alert-validate validate-input"
+          className="input-cl"
           value={state.email}
           onChange={handleChange}
           data-validate="Valid email is required: ex@abc.xyz"

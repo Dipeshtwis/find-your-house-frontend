@@ -45,11 +45,13 @@ const Login = props => {
 
   return (
     <div>
+      <h2 className="register-header">Member Login</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
           name="email"
           placeholder="Email"
+          className="input-cl"
           value={state.email}
           onChange={handleChange}
           required
@@ -59,16 +61,19 @@ const Login = props => {
           type="password"
           name="password"
           placeholder="Password"
+          className="input-cl"
           value={state.password}
           onChange={handleChange}
           required
         />
 
-        <button type="submit">Login</button>
+        <div className="div-btn">
+          <button type="submit" className="form-btn">Login</button>
+        </div>
 
       </form>
-      <Link to="/signup"> Sign up</Link>
-      <Link to="/"> Back To Home</Link>
+      <p className="text-link"><Link to="/signup"> Sign up</Link></p>
+      <p className="text-link"><Link to="/"> Back To Home</Link></p>
     </div>
   );
 }
