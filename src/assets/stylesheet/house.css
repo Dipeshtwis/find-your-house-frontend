@@ -1,3 +1,26 @@
+.house-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.list button {
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 4px 8px;
+  background-color: #d50000;
+  border: 2px solid #d50000;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+}
+
+.btn:hover {
+  color: #d50000;
+  background-color: white;
+}
+
 .house {
   display: flex;
   flex-wrap: wrap;

@@ -58,9 +58,13 @@ const Dashboard = props => {
 
   return (
     <>
-      <div>
-        <h1>Houses</h1>
-        <button onClick={() => handleLogoutClick()}>Logout</button>
+      <div className="navbar">
+        <div className="logo">
+          <h1>Houses</h1>
+        </div>
+        <div className="list">
+          <button className="btn" onClick={() => handleLogoutClick()}>Logout</button>
+        </div>
       </div>
       <div className="house">
         {renderHelper()}
