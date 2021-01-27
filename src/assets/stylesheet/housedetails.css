@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  padding-top: 15px;
 }
 
 .link {
@@ -30,7 +31,11 @@
 
 .detail-header {
   display: flex;
-  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.price {
+  margin-left: 170px;
 }
 
 .house-desc,

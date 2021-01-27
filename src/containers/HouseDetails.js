@@ -39,7 +39,7 @@ const HouseDetails = props => {
             <div>
               <h3>{house.location}</h3>
             </div>
-            <div>
+            <div className="price">
               <h3 className="house-price">
                 {' '}
                 {house.price}
