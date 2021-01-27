@@ -3,6 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getUserToken } from '../actions/index';
+import '../assets/stylesheet/registration.css';
 import { API_ID, API_REGISTRATION } from '../api/railshouse';
 
 const Registration = props => {
@@ -54,11 +55,13 @@ const Registration = props => {
 
   return (
     <div>
+      <h2 className="register-header">Member Registration</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="username"
           placeholder="Username"
+          className="input-cl"
           value={state.username}
           onChange={handleChange}
           required
@@ -68,8 +71,10 @@ const Registration = props => {
           type="email"
           name="email"
           placeholder="Email"
+          className="input-cl alert-validate validate-input"
           value={state.email}
           onChange={handleChange}
+          data-validate="Valid email is required: ex@abc.xyz"
           required
         />
 
@@ -77,6 +82,7 @@ const Registration = props => {
           type="password"
           name="password"
           placeholder="Password"
+          className="input-cl"
           value={state.password}
           onChange={handleChange}
           required
@@ -86,17 +92,20 @@ const Registration = props => {
           type="password"
           name="password_confirmation"
           placeholder="Password_confirmation"
+          className="input-cl"
           value={state.password_confirmation}
           onChange={handleChange}
           required
         />
-
-        <button type="submit">Register</button>
+        <div className="div-btn">
+          <button type="submit" className="form-btn">Register</button>
+        </div>
+        
 
       </form>
 
-      <Link to="/login"> Login</Link>
-      <Link to="/"> Back To Home</Link>
+      <p className="text-link"><Link to="/login"> Login</Link></p>
+      <p className="text-link"><Link to="/"> Back To Home</Link></p>
     </div>
   );
 };
