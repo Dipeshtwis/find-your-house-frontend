@@ -7,11 +7,21 @@ const Home = props => {
   }
 
   return (
-    <>
-      <h1>Home</h1>
-      <Link to="/signup"> Sign up</Link>
-      <Link to="/login"> Login</Link>
-    </>
+    <div className="home">
+      <div className ="navbar">
+        <div className="logo">
+          <h1>Home</h1>
+        </div>
+        <div className="list">
+          <ul className="navbar-list">
+            <li className="link-btn"><Link to="/signup"> SIGN UP</Link></li>
+            <li className="link-btn"><Link to="/login"> LOGIN</Link></li>
+          </ul>
+        </div>
+      </div>
+      <h3 className="tagline">Find Housing Anywhere</h3>
+      <p className="explore"><Link to="/signup">Explore Developer<span>&#8594;</span></Link></p>
+    </div>
   );
 }
 
