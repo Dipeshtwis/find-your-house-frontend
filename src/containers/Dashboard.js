@@ -12,6 +12,23 @@ import '../assets/stylesheet/house.css';
 const Dashboard = props => {
   const { getHouse, houses, getUserToken } = props;
 
+  const checkLoginStatus = useCallback(() => {
+    axios.get("http://localhost:3001/logged_in", {
+      withCredentials: true
+    })
+    .then(res => {
+      console.log("logged_in?", res.data.user.id);
+      localStorage.setItem('usr', res.data.user.id);
+    })
+    .catch(err => {
+      console.log("check login error", err);
+    });
+  });
+
+  useEffect(() => {
+    checkLoginStatus();
+  }, [checkLoginStatus]);
+
   const fetchHouse = useCallback(() => {
     axios.get(`${API_ID}${API_HOUSE}`)
     .then(res => {
