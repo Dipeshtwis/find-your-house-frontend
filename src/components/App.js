@@ -5,6 +5,7 @@ import Dashboard from '../containers/Dashboard';
 import HouseDetails from '../containers/HouseDetails';
 import Login from './Login';
 import Registration from './Registration';
+import Favourite from '../containers/Favourite';
 
 const App = props => {
   return (
@@ -16,6 +17,7 @@ const App = props => {
           <Route exact path="/dashboard/:id/:name" component={HouseDetails} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Registration} />
+          <Route exact path="/favourite" component={Favourite} />
         </Switch>
       </BrowserRouter>
     </div>
