@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { getUserToken } from '../actions/index';
-import { API_ID, API_LOGOUT, API_HOUSE } from '../api/railshouse';
+import { API_ID, API_LOGOUT, API_HOUSE, API_LOGIN_STATUS } from '../api/railshouse';
 import { getHouseAction } from '../actions/index';
 import loader from '../assets/img/loader.gif';
 import HouseCard from '../components/HouseCard';
@@ -13,7 +13,7 @@ const Dashboard = props => {
   const { getHouse, houses, getUserToken } = props;
 
   const checkLoginStatus = useCallback(() => {
-    axios.get("http://localhost:3001/logged_in", {
+    axios.get(`${API_ID}${API_LOGIN_STATUS}`, {
       withCredentials: true
     })
     .then(res => {
