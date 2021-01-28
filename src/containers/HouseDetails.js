@@ -3,7 +3,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getHouseDetail } from '../actions/index';
-import '../assets/stylesheet/housedetails.css'
+import '../assets/stylesheet/housedetails.css';
+import { handleFavoriteClick } from '../utils/favouriteutil';
 import { API_ID, API_HOUSE } from '../api/railshouse';
 
 const HouseDetails = props => {
@@ -58,6 +59,18 @@ const HouseDetails = props => {
               {house.description}
             </p>
           </div>
+          <button
+            className="btn last"
+            type="button"
+            onClick={() => {
+              handleFavoriteClick(
+                localStorage.getItem('usr'),
+                house.id,
+              );
+            }}
+          >
+            Add to favourite
+          </button>
         </div>
       );
     }

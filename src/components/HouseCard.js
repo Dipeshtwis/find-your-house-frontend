@@ -1,25 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { API_ID, API_FAVOURITE } from '../api/railshouse';
+import { handleFavoriteClick } from '../utils/favouriteutil';
 import '../assets/stylesheet/house.css';
 
 const HouseCard = ({ house }) => {
-  const handleFavoriteClick = (usr, houseId) => {
-    axios.post(`${API_ID}${API_FAVOURITE}`, {
-      user_id: usr,
-      house_id: houseId,
-    },
-    { withCredentials: true}
-    )
-    .then(res => {
-      console.log("Added succes", res);
-    })
-    .catch(err => {
-      console.log("Add favourite error", err);
-    })
-  }
-
   const favMe = () => {
       return (
         <button

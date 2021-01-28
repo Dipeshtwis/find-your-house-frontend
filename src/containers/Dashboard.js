@@ -17,7 +17,6 @@ const Dashboard = props => {
       withCredentials: true
     })
     .then(res => {
-      console.log("logged_in?", res.data.user.id);
       localStorage.setItem('usr', res.data.user.id);
     })
     .catch(err => {

@@ -21,6 +21,10 @@
   background-color: white;
 }
 
+.last {
+  margin-top: 20px;
+}
+
 .house {
   display: flex;
   flex-wrap: wrap;
