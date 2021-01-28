@@ -15,3 +15,8 @@ export const handleFavoriteClick = (usr, houseId) => {
       console.log("Add favourite error", err);
     });
 };
+
+export const fetchFavourite = () =>
+  axios.get(`${API_ID}${API_FAVOURITE}`,
+    {withCredentials: true}
+  );

@@ -1,12 +1,36 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import loader from '../assets/img/loader.gif';
 import { getHouseAction } from '../actions/index';
 import HouseCard from '../components/HouseCard';
+import axios from 'axios';
+import { API_ID, API_FAVOURITE } from '../api/railshouse';
+// import {fetchFavourite} from '../utils/favouriteutil';
 
 const Favourite = props => {
   const { houses } = props;
+
+  const fetchFavourite = useCallback(() => {
+  	axios.get(`${API_ID}${API_FAVOURITE}`,
+    {withCredentials: true}
+    )
+    .then(res => {
+      const uniq = [...new Set(res.data.map(x => x.id))].map(
+          id => res.data.find(s => s.id === id),
+        );
+        getHouseAction(uniq);
+        console.log("yeah", res.data);
+    })
+    .catch(err => {
+      console.log("getting favourite error", err);
+    });
+  }, [getHouseAction]);
+
+  useEffect(() => {
+    fetchFavourite();
+  }, [fetchFavourite]);
+
   const renderHelper = () => {
     if (!localStorage.getItem('usr')) {
       return <Redirect to ="/dashboard" />
