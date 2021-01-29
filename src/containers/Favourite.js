@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import loader from '../assets/img/loader.gif';
 import { getHouseAction } from '../actions/index';
 import HouseCard from '../components/HouseCard';
@@ -48,9 +48,19 @@ const Favourite = props => {
   };
 
   return (
-    <div className="house">
-      {renderHelper()}
-    </div>
+  	<>
+  	  <div className="navbar">
+        <div className="logo">
+          <h1>Favorites</h1>
+        </div>
+        <div className="list desc">
+          <Link to="/dashboard" className="btn"> Go to Houses</Link>
+        </div>
+      </div>
+      <div className="house">
+        {renderHelper()}
+      </div>
+    </>
   );
 }
 
