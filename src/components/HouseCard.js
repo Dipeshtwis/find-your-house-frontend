@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { handleFavoriteClick } from '../utils/favouriteutil';
 import '../assets/stylesheet/house.css';
 
-const HouseCard = ({ house }) => {
+const HouseCard = props => {
+  const { house, alreadyFav } = props;
   const favMe = () => {
+    if (!alreadyFav) {
       return (
         <button
           className="btn"
@@ -19,6 +21,7 @@ const HouseCard = ({ house }) => {
           Add to favourite
         </button>
       );
+    }
   };
 
   return (

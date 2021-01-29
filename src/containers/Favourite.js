@@ -25,7 +25,7 @@ const Favourite = props => {
     .catch(err => {
       console.log("getting favourite error", err);
     });
-  }, [getHouseAction]);
+  }, [getHouse]);
 
   useEffect(() => {
     fetchFavourite();
@@ -37,7 +37,7 @@ const Favourite = props => {
     }
     let res = null;
     if (houses.length > 0) {
-      res = houses.map(house => (<HouseCard key={house.id} house={house} />));
+      res = houses.map(house => (<HouseCard key={house.id} alreadyFav house={house} />));
     } else {
       res = (
         <img src={loader} alt="loading..." />
