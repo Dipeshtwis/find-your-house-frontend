@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
+import logo from '../assets/img/logo.gif';
 
 const Home = props => {
   if (localStorage.getItem('token')) {
@@ -10,7 +11,7 @@ const Home = props => {
     <div className="home">
       <div className ="navbar">
         <div className="logo">
-          <h1>Home</h1>
+          <img src={logo} alt="Homepointr" className="logo-header" />
         </div>
         <div className="list">
           <ul className="navbar-list">

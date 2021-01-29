@@ -20,9 +20,13 @@ code {
     monospace;
 }
 
+.App {
+  background: url('./assets/img/white.jpg') no-repeat center;
+}
+
 .home {
-  background: url('./assets/img/home1.jpg') no-repeat center;
-  height: 760px;
+  background: url('./assets/img/home2.jpg') center;
+  height: 737px;
 }
 
 .navbar {
@@ -30,9 +34,16 @@ code {
   justify-content: space-around;
 }
 
+.logo-header {
+  color: white;
+  font-size: 40px;
+  font-weight: 600;
+  width: 180px;
+}
+
 .navbar-list {
   display: inline-flex;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 
 .navbar-list li {

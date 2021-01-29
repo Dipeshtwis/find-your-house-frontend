@@ -44,7 +44,7 @@ const Login = props => {
   }
 
   return (
-    <div>
+    <div className="parent">
       <h2 className="register-header">Member Login</h2>
       <form onSubmit={handleSubmit}>
         <input

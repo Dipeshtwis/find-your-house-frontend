@@ -83,10 +83,7 @@ const HouseDetails = props => {
           <Link to="/dashboard"> &#8617;</Link>
         </div>
         <div className="house-header">
-          <h2>{house_detail.name}</h2>
-        </div>
-        <div>
-        <Link to="/favourite" className="btn"> Go to Favourite</Link>
+          <h2 className="det">{house_detail.name}</h2>
         </div>
       </div>
       

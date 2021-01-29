@@ -20,7 +20,6 @@
 .house-detail {
   display: flex;
   flex-direction: column;
-  border: 2px solid white;
   margin: 7px auto;
   width: 90%;
 }
