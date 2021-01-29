@@ -9,7 +9,7 @@ import { API_ID, API_FAVOURITE } from '../api/railshouse';
 // import {fetchFavourite} from '../utils/favouriteutil';
 
 const Favourite = props => {
-  const { houses } = props;
+  const { houses, getHouse } = props;
 
   const fetchFavourite = useCallback(() => {
   	axios.get(`${API_ID}${API_FAVOURITE}`,
@@ -19,7 +19,7 @@ const Favourite = props => {
       const uniq = [...new Set(res.data.map(x => x.id))].map(
           id => res.data.find(s => s.id === id),
         );
-        getHouseAction(uniq);
+        getHouse(uniq);
         console.log("yeah", res.data);
     })
     .catch(err => {
