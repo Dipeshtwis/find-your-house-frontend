@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import { getUserToken } from '../actions/index';
 import { API_ID, API_LOGOUT, API_HOUSE, API_LOGIN_STATUS } from '../api/railshouse';
@@ -79,6 +79,7 @@ const Dashboard = props => {
           <h1>Houses</h1>
         </div>
         <div className="list">
+          <Link to="/favourite" className="btn"> Go to Favourite</Link>
           <button className="btn" onClick={() => handleLogoutClick()}>Logout</button>
         </div>
       </div>

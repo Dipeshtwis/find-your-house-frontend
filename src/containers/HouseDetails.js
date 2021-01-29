@@ -85,6 +85,9 @@ const HouseDetails = props => {
         <div className="house-header">
           <h2>{house_detail.name}</h2>
         </div>
+        <div>
+        <Link to="/favourite" className="btn"> Go to Favourite</Link>
+        </div>
       </div>
       
       {renderHelper()}
