@@ -1,12 +1,11 @@
 import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import { Redirect, Link } from 'react-router-dom';
 import loader from '../assets/img/loader.gif';
 import { getHouseAction } from '../actions/index';
 import HouseCard from '../components/HouseCard';
-import axios from 'axios';
 import { API_ID, API_FAVOURITE } from '../api/railshouse';
-// import {fetchFavourite} from '../utils/favouriteutil';
 
 const Favourite = props => {
   const { houses, getHouse } = props;
@@ -20,7 +19,6 @@ const Favourite = props => {
           id => res.data.find(s => s.id === id),
         );
         getHouse(uniq);
-        console.log("yeah", res.data);
     })
     .catch(err => {
       console.log("getting favourite error", err);

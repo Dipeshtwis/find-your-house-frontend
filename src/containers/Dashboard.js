@@ -59,7 +59,6 @@ const Dashboard = props => {
       if (!localStorage.getItem('token')) {
         return <Redirect to="/" />;
       }
-
       let res = null;
       if (houses.length > 0) {
         res = houses.map(house => (<HouseCard key={house.id} house={house} />));
