@@ -2,7 +2,6 @@ import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { Redirect, Link } from 'react-router-dom';
-import loader from '../assets/img/loader.gif';
 import { getHouseAction } from '../actions/index';
 import HouseCard from '../components/HouseCard';
 import { API_ID, API_FAVOURITE } from '../api/railshouse';
@@ -38,7 +37,7 @@ const Favourite = props => {
       res = houses.map(house => (<HouseCard key={house.id} alreadyFav house={house} />));
     } else {
       res = (
-        <img src={loader} alt="loading..." />
+        <p className="para-fav">You have no favourite House</p>
       );
     }
 
@@ -49,7 +48,7 @@ const Favourite = props => {
   	<>
   	  <div className="navbar">
         <div className="logo">
-          <h1>Favorites</h1>
+          <h1>Favourites</h1>
         </div>
         <div className="list desc">
           <Link to="/dashboard" className="btn"> Go to Houses</Link>

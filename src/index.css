@@ -83,6 +83,11 @@ code {
   border-radius: 4px;
 }
 
+.para-fav {
+  padding: 50px;
+  margin-top: 250px;
+}
+
 .explore a {
   color: white;
 }
@@ -94,6 +99,12 @@ code {
 @media screen and (min-width: 768px) {
   .link-btn a {
     font-size: 16px;
+  }
+
+  .para-fav {
+    margin-top: 150px;
+    margin-left: 250px;
+    padding-bottom: 390px;
   }
 }
 
@@ -113,5 +124,9 @@ code {
   .tagline {
     font-size: 36px;
     margin-top: 100px;
+  }
+
+  .para-fav {
+    margin-left: 470px;
   }
 }
