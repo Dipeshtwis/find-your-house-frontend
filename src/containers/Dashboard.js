@@ -101,6 +101,16 @@ const mapDispatchToProps = dispatch => ({
   getUserToken: data => dispatch(getUserToken(data)),
 });
 
+Dashboard.defaultProps = {
+  houses: PropTypes.shape({
+    id: '',
+    name: '',
+    price: '',
+    description: '',
+    photo: '',
+  }),
+};
+
 Dashboard.propTypes = {
   houses: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   getHouse: PropTypes.func.isRequired,

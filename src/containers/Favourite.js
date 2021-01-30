@@ -69,6 +69,16 @@ const mapDispatchToProps = dispatch => ({
   getHouse: data => dispatch(getHouseAction(data)),
 });
 
+Favourite.defaultProps = {
+  houses: PropTypes.shape({
+    id: '',
+    name: '',
+    price: '',
+    description: '',
+    photo: '',
+  }),
+};
+
 Favourite.propTypes = {
   houses: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   getHouse: PropTypes.func.isRequired,
