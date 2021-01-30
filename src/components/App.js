@@ -7,7 +7,7 @@ import Login from './Login';
 import Registration from './Registration';
 import Favourite from '../containers/Favourite';
 
-const App = props => (
+const App = () => (
   <div className="App">
     <BrowserRouter>
       <Switch>

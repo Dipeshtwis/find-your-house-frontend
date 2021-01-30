@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
 import { getUserToken } from '../actions/index';
 import '../assets/stylesheet/registration.css';
@@ -117,5 +118,9 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getUserToken(data));
   },
 });
+
+Registration.propTypes = {
+  getUserToken: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

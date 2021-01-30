@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import handleFavoriteClick from '../utils/favouriteutil';
 import '../assets/stylesheet/house.css';
 
@@ -46,6 +47,21 @@ const HouseCard = props => {
       </div>
     </div>
   );
+};
+
+HouseCard.defaultProps = {
+  alreadyFav: false,
+};
+
+HouseCard.propTypes = {
+  alreadyFav: PropTypes.bool,
+  house: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    description: PropTypes.string,
+    photo: PropTypes.string,
+  }).isRequired,
 };
 
 export default HouseCard;
