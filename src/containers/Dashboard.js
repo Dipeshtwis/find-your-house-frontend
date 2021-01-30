@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { getUserToken, getHouseAction } from '../actions/index';
 import {
   API_ID, API_LOGOUT, API_HOUSE, API_LOGIN_STATUS,
 } from '../api/railshouse';
-
 import loader from '../assets/img/loader.gif';
 import HouseCard from '../components/HouseCard';
 import '../assets/stylesheet/house.css';
@@ -45,16 +45,16 @@ const Dashboard = props => {
   }, [fetchHouse]);
 
   const handleLogoutClick = () => {
-  	axios.delete(`${API_ID}${API_LOGOUT}`, {
-  	  withCredentials: true,
-  	})
-  	.then(res => {
-  	  localStorage.removeItem('token');
+    axios.delete(`${API_ID}${API_LOGOUT}`, {
+      withCredentials: true,
+    })
+      .then(() => {
+        localStorage.removeItem('token');
         getUserToken('');
-  	})
-  	.catch(err => {
-  	  console.log('logout error', err);
-  	});
+      })
+      .catch(err => {
+        console.log('logout error', err);
+      });
   };
 
   const renderHelper = () => {
@@ -81,7 +81,7 @@ const Dashboard = props => {
         </div>
         <div className="list">
           <Link to="/favourite" className="btn"> Go to Favourite</Link>
-          <button className="btn" onClick={() => handleLogoutClick()}>Logout</button>
+          <button type="button" className="btn" onClick={() => handleLogoutClick()}>Logout</button>
         </div>
       </div>
       <div className="house">
@@ -100,5 +100,11 @@ const mapDispatchToProps = dispatch => ({
   getHouse: data => dispatch(getHouseAction(data)),
   getUserToken: data => dispatch(getUserToken(data)),
 });
+
+Dashboard.propTypes = {
+  houses: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  getHouse: PropTypes.func.isRequired,
+  getUserToken: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
