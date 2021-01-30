@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { handleFavoriteClick } from '../utils/favouriteutil';
+import handleFavoriteClick from '../utils/favouriteutil';
 import '../assets/stylesheet/house.css';
 
 const HouseCard = props => {
@@ -30,7 +30,13 @@ const HouseCard = props => {
         <img className="house-img" src={house.photo} alt={house.name} />
       </div>
       <div>
-        <p>{house.name}<span className="house-price">{house.price}$/month</span></p>
+        <p>
+          {house.name}
+          <span className="house-price">
+            {house.price}
+            $/month
+          </span>
+        </p>
       </div>
       <div className="linker">
         <p><Link to={`/dashboard/${house.id}/${house.name}`}>Check Details</Link></p>

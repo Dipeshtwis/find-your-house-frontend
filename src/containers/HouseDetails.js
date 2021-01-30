@@ -4,21 +4,21 @@ import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { getHouseDetail } from '../actions/index';
 import '../assets/stylesheet/housedetails.css';
-import { handleFavoriteClick } from '../utils/favouriteutil';
+import handleFavoriteClick from '../utils/favouriteutil';
 import { API_ID, API_HOUSE } from '../api/railshouse';
 
 const HouseDetails = props => {
-  const { house_detail, getHouseDetail } = props
-  
+  const { houseDetail, getHouseDetail } = props;
+
   const fetchHouseDetail = useCallback(() => {
     axios.get(`${API_ID}${API_HOUSE}/${props.match.params.id}`)
-    .then(res => {
-      getHouseDetail(res.data);
-    })
-    .catch(err => {
-      console.log("house detail fetching error", err);
-    });
-  }, [getHouseDetail, props.match.params.id]);
+      .then(res => {
+        getHouseDetail(res.data);
+      })
+      .catch(err => {
+        console.log('house detail fetching error', err);
+      });
+  }, [getHouseDetail]);
 
   useEffect(() => {
     fetchHouseDetail();
@@ -29,10 +29,10 @@ const HouseDetails = props => {
       return <Redirect to="/" />;
     }
 
-    if(house_detail) {
-      const house = house_detail;
+    if (houseDetail) {
+      const house = houseDetail;
       return (
-      	<div className="house-detail">
+        <div className="house-detail">
           <div>
             <img className="img" src={house.photo} alt={house.name} />
           </div>
@@ -51,7 +51,7 @@ const HouseDetails = props => {
                 {' '}
               </h3>
             </div>
-            
+
           </div>
           <div className="house-desc">
             <h3>About This House</h3>
@@ -83,17 +83,17 @@ const HouseDetails = props => {
           <Link to="/dashboard"> &#8617;</Link>
         </div>
         <div className="house-header">
-          <h2 className="det">{house_detail.name}</h2>
+          <h2 className="det">{houseDetail.name}</h2>
         </div>
       </div>
-      
+
       {renderHelper()}
     </>
   );
 };
 
 const mapStateToProps = state => ({
-  house_detail: state.house_detail,
+  houseDetail: state.houseDetail,
 });
 
 const mapDispatchToProps = dispatch => ({

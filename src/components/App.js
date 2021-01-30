@@ -7,23 +7,19 @@ import Login from './Login';
 import Registration from './Registration';
 import Favourite from '../containers/Favourite';
 
-const App = props => {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/dashboard/:id/:name" component={HouseDetails} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Registration} />
-          <Route exact path="/favourite" component={Favourite} />
-        </Switch>
-      </BrowserRouter>
-    </div>
-  );
-}
+const App = props => (
+  <div className="App">
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/dashboard/:id/:name" component={HouseDetails} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Registration} />
+        <Route exact path="/favourite" component={Favourite} />
+      </Switch>
+    </BrowserRouter>
+  </div>
+);
 
 export default App;
-
-

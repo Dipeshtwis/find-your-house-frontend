@@ -11,17 +11,16 @@ const Favourite = props => {
 
   const fetchFavourite = useCallback(() => {
   	axios.get(`${API_ID}${API_FAVOURITE}`,
-    {withCredentials: true}
-    )
-    .then(res => {
-      const uniq = [...new Set(res.data.map(x => x.id))].map(
+      { withCredentials: true })
+      .then(res => {
+        const uniq = [...new Set(res.data.map(x => x.id))].map(
           id => res.data.find(s => s.id === id),
         );
         getHouse(uniq);
-    })
-    .catch(err => {
-      console.log("getting favourite error", err);
-    });
+      })
+      .catch(err => {
+        console.log('getting favourite error', err);
+      });
   }, [getHouse]);
 
   useEffect(() => {
@@ -30,7 +29,7 @@ const Favourite = props => {
 
   const renderHelper = () => {
     if (!localStorage.getItem('usr')) {
-      return <Redirect to ="/dashboard" />
+      return <Redirect to="/dashboard" />;
     }
     let res = null;
     if (houses.length > 0) {
@@ -45,8 +44,8 @@ const Favourite = props => {
   };
 
   return (
-  	<>
-  	  <div className="navbar">
+    <>
+      <div className="navbar">
         <div className="logo">
           <h1>Favourites</h1>
         </div>
@@ -59,7 +58,7 @@ const Favourite = props => {
       </div>
     </>
   );
-}
+};
 
 const mapStateToProps = state => ({
   houses: state.houses,
@@ -67,6 +66,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getHouse: data => dispatch(getHouseAction(data)),
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favourite);

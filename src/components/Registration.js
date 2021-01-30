@@ -12,7 +12,7 @@ const Registration = props => {
     email: '',
     password: '',
     password_confirmation: '',
-    registrationErrors: ''
+    registrationErrors: '',
   });
 
   if (localStorage.getItem('token')) {
@@ -24,34 +24,33 @@ const Registration = props => {
   };
 
   const {
-      username,
-      email,
-      password,
-      password_confirmation
-    } = state;
+    username,
+    email,
+    password,
+    password_confirmation,
+  } = state;
 
   const handleSubmit = event => {
     axios.post(`${API_ID}${API_REGISTRATION}`, {
       user: {
-        username: username,
-        email: email,
-        password: password,
-        password_confirmation: password_confirmation
-      }
+        username,
+        email,
+        password,
+        password_confirmation,
+      },
     },
-    { withCredentials: true }
-    )
-    .then(res => {
-      if (res.data.logged_in) {
-        localStorage.setItem('token', res.data.logged_in);
-        props.getUserToken(res.data.logged_in);
-      }
-    })
-    .catch(err => {
-      console.log("registration error", err);
-    });
+    { withCredentials: true })
+      .then(res => {
+        if (res.data.logged_in) {
+          localStorage.setItem('token', res.data.logged_in);
+          props.getUserToken(res.data.logged_in);
+        }
+      })
+      .catch(err => {
+        console.log('registration error', err);
+      });
     event.preventDefault();
-  }
+  };
 
   return (
     <div>
@@ -100,7 +99,6 @@ const Registration = props => {
         <div className="div-btn">
           <button type="submit" className="form-btn">Register</button>
         </div>
-        
 
       </form>
 

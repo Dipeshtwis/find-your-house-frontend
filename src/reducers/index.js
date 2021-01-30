@@ -5,8 +5,8 @@ import userReducer from './userDetail';
 
 const rootReducer = combineReducers({
   houses: houseReducer,
-  house_detail: houseDetailReducer,
-  token: userReducer, 
+  houseDetail: houseDetailReducer,
+  token: userReducer,
 });
 
 const store = createStore(rootReducer);

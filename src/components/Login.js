@@ -9,7 +9,7 @@ const Login = props => {
   const [state, setState] = useState({
     email: '',
     password: '',
-    loginErrors: ''
+    loginErrors: '',
   });
 
   if (localStorage.getItem('token')) {
@@ -25,23 +25,22 @@ const Login = props => {
   const handleSubmit = event => {
     axios.post(`${API_ID}${API_LOGIN}`, {
       user: {
-        email: email,
-        password: password
-      }
+        email,
+        password,
+      },
     },
-    { withCredentials: true }
-    )
-    .then(res => {
-      if (res.data.logged_in) {
-        localStorage.setItem('token', res.data.logged_in);
-        props.getUserToken(res.data.logged_in);
-      }
-    })
-    .catch(err => {
-      console.log("login error", err);
-    });
+    { withCredentials: true })
+      .then(res => {
+        if (res.data.logged_in) {
+          localStorage.setItem('token', res.data.logged_in);
+          props.getUserToken(res.data.logged_in);
+        }
+      })
+      .catch(err => {
+        console.log('login error', err);
+      });
     event.preventDefault();
-  }
+  };
 
   return (
     <div className="parent">
@@ -76,7 +75,7 @@ const Login = props => {
       <p className="text-link"><Link to="/"> Back To Home</Link></p>
     </div>
   );
-}
+};
 
 const mapStateToProps = state => ({
   token: state.token,

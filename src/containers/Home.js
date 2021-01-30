@@ -2,14 +2,14 @@ import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import logo from '../assets/img/logo.gif';
 
-const Home = props => {
+const Home = () => {
   if (localStorage.getItem('token')) {
     return <Redirect to="/dashboard" />;
   }
 
   return (
     <div className="home">
-      <div className ="navbar">
+      <div className="navbar">
         <div className="logo">
           <img src={logo} alt="Homepointr" className="logo-header" />
         </div>
@@ -21,9 +21,14 @@ const Home = props => {
         </div>
       </div>
       <h3 className="tagline">Find Housing Anywhere</h3>
-      <p className="explore"><Link to="/signup">Explore Developer<span>&#8594;</span></Link></p>
+      <p className="explore">
+        <Link to="/signup">
+          Explore House
+          <span>&#8594;</span>
+        </Link>
+      </p>
     </div>
   );
-}
+};
 
 export default Home;
