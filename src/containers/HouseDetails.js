@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getHouseDetail } from '../actions/index';
 import '../assets/stylesheet/housedetails.css';
 import handleFavoriteClick from '../utils/favouriteutil';
@@ -25,7 +26,7 @@ const HouseDetails = props => {
   }, [fetchHouseDetail]);
 
   const renderHelper = () => {
-  	if (!localStorage.getItem('token')) {
+    if (!localStorage.getItem('token')) {
       return <Redirect to="/" />;
     }
 
@@ -101,5 +102,26 @@ const mapDispatchToProps = dispatch => ({
     dispatch(getHouseDetail(data));
   },
 });
+
+HouseDetails.defaultProps = {
+  houseDetail: PropTypes.shape({
+    id: '',
+    name: '',
+    price: '',
+    description: '',
+    photo: '',
+  }),
+};
+
+HouseDetails.propTypes = {
+  getHouseDetail: PropTypes.func.isRequired,
+  houseDetail: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    description: PropTypes.string,
+    photo: PropTypes.string,
+  }),
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(HouseDetails);

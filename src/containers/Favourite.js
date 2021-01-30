@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { Redirect, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getHouseAction } from '../actions/index';
 import HouseCard from '../components/HouseCard';
 import { API_ID, API_FAVOURITE } from '../api/railshouse';
@@ -10,7 +11,7 @@ const Favourite = props => {
   const { houses, getHouse } = props;
 
   const fetchFavourite = useCallback(() => {
-  	axios.get(`${API_ID}${API_FAVOURITE}`,
+    axios.get(`${API_ID}${API_FAVOURITE}`,
       { withCredentials: true })
       .then(res => {
         const uniq = [...new Set(res.data.map(x => x.id))].map(
@@ -67,5 +68,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getHouse: data => dispatch(getHouseAction(data)),
 });
+
+Favourite.propTypes = {
+  houses: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  getHouse: PropTypes.func.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favourite);
