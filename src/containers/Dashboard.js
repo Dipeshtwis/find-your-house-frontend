@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { getUserToken, getHouseAction } from '../actions/index';
 import {
-  API_ID, API_LOGOUT, API_HOUSE, API_LOGIN_STATUS,
+  API_ID, API_LOGOUT, API_HOUSE,
 } from '../api/railshouse';
 import loader from '../assets/img/loader.gif';
 import HouseCard from '../components/HouseCard';
@@ -13,22 +13,6 @@ import '../assets/stylesheet/house.css';
 
 const Dashboard = props => {
   const { getHouse, houses, getUserToken } = props;
-
-  const checkLoginStatus = useCallback(() => {
-    axios.get(`${API_ID}${API_LOGIN_STATUS}`, {
-      withCredentials: true,
-    })
-      .then(res => {
-        localStorage.setItem('usr', res.data.user.id);
-      })
-      .catch(err => {
-        console.log('check login error', err);
-      });
-  });
-
-  useEffect(() => {
-    checkLoginStatus();
-  }, [checkLoginStatus]);
 
   const fetchHouse = useCallback(() => {
     axios.get(`${API_ID}${API_HOUSE}`)

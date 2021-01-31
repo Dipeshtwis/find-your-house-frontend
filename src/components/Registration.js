@@ -33,18 +33,16 @@ const Registration = props => {
 
   const handleSubmit = event => {
     axios.post(`${API_ID}${API_REGISTRATION}`, {
-      user: {
-        username,
-        email,
-        password,
-        password_confirmation,
-      },
+      username,
+      email,
+      password,
+      password_confirmation,
     },
     { withCredentials: true })
       .then(res => {
-        if (res.data.logged_in) {
-          localStorage.setItem('token', res.data.logged_in);
-          props.getUserToken(res.data.logged_in);
+        if (res.data.token) {
+          localStorage.setItem('token', res.data.token);
+          props.getUserToken(res.data.token);
         }
       })
       .catch(err => {
@@ -91,7 +89,7 @@ const Registration = props => {
         <input
           type="password"
           name="password_confirmation"
-          placeholder="Password_confirmation"
+          placeholder="Confirm your password"
           className="input-cl"
           value={state.password_confirmation}
           onChange={handleChange}

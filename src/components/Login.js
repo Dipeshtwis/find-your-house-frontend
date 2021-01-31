@@ -25,16 +25,14 @@ const Login = props => {
 
   const handleSubmit = event => {
     axios.post(`${API_ID}${API_LOGIN}`, {
-      user: {
-        email,
-        password,
-      },
+      email,
+      password,
     },
     { withCredentials: true })
       .then(res => {
-        if (res.data.logged_in) {
-          localStorage.setItem('token', res.data.logged_in);
-          props.getUserToken(res.data.logged_in);
+        if (res.data.token) {
+          localStorage.setItem('token', res.data.token);
+          props.getUserToken(res.data.token);
         }
       })
       .catch(err => {
