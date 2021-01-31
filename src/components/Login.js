@@ -35,9 +35,7 @@ const Login = props => {
           props.getUserToken(res.data.token);
         }
       })
-      .catch(err => {
-        console.log('login error', err);
-      });
+      .catch(err => err);
     event.preventDefault();
   };
 

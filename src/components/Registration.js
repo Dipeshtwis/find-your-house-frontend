@@ -45,9 +45,7 @@ const Registration = props => {
           props.getUserToken(res.data.token);
         }
       })
-      .catch(err => {
-        console.log('registration error', err);
-      });
+      .catch(err => err);
     event.preventDefault();
   };
 

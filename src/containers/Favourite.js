@@ -1,16 +1,21 @@
 import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getHouseAction } from '../actions/index';
 import HouseCard from '../components/HouseCard';
-import { fetchFavourite } from '../utils/favouriteutil';
+import { API_ID, API_FAVOURITE } from '../api/railshouse';
 
 const Favourite = props => {
   const { houses, getHouse } = props;
 
-  useCallback(() => {
-    fetchFavourite(localStorage.getItem('token'))
+  const fetchFavourite = useCallback(() => {
+    axios.get(`${API_ID}${API_FAVOURITE}`, {
+      headers: {
+        Authorization: localStorage.getItem('token'),
+      },
+    })
       .then(res => {
         const uniq = [...new Set(res.data.map(x => x.id))].map(
           id => res.data.find(s => s.id === id),
