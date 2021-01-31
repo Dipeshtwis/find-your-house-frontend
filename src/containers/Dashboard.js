@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { getUserToken, getHouseAction } from '../actions/index';
 import {
-  API_ID, API_LOGOUT, API_HOUSE,
+  API_ID, API_HOUSE,
 } from '../api/railshouse';
 import loader from '../assets/img/loader.gif';
 import HouseCard from '../components/HouseCard';
@@ -19,9 +19,7 @@ const Dashboard = props => {
       .then(res => {
         getHouse(res.data);
       })
-      .catch(err => {
-        console.log('house fetching error', err);
-      });
+      .catch(err => err);
   }, [getHouse]);
 
   useEffect(() => {
@@ -29,16 +27,8 @@ const Dashboard = props => {
   }, [fetchHouse]);
 
   const handleLogoutClick = () => {
-    axios.delete(`${API_ID}${API_LOGOUT}`, {
-      withCredentials: true,
-    })
-      .then(() => {
-        localStorage.removeItem('token');
-        getUserToken('');
-      })
-      .catch(err => {
-        console.log('logout error', err);
-      });
+    localStorage.removeItem('token');
+    getUserToken('');
   };
 
   const renderHelper = () => {

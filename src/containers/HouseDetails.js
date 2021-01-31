@@ -16,9 +16,7 @@ const HouseDetails = props => {
       .then(res => {
         getHouseDetail(res.data);
       })
-      .catch(err => {
-        console.log('house detail fetching error', err);
-      });
+      .catch(err => err);
   }, [getHouseDetail]);
 
   useEffect(() => {
