@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import handleFavoriteClick from '../utils/favouriteutil';
+import { handleFavoriteClick } from '../utils/favouriteutil';
 import '../assets/stylesheet/house.css';
 
 const HouseCard = props => {
@@ -14,7 +14,7 @@ const HouseCard = props => {
           type="button"
           onClick={() => {
             handleFavoriteClick(
-              localStorage.getItem('usr'),
+              localStorage.getItem('token'),
               house.id,
             );
           }}

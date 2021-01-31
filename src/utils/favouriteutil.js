@@ -1,12 +1,22 @@
 import axios from 'axios';
 import { API_ID, API_FAVOURITE } from '../api/railshouse';
 
-const handleFavoriteClick = (usr, houseId) => {
+export const handleFavoriteClick = (usr, houseId) => {
   axios.post(`${API_ID}${API_FAVOURITE}`, {
-    user_id: usr,
     house_id: houseId,
+  }, {
+    headers: {
+      Authorization: usr,
+    },
   },
   { withCredentials: true });
 };
 
-export default handleFavoriteClick;
+export const fetchFavourite = usr => {
+  axios.get(`${API_ID}${API_FAVOURITE}`, {
+    headers: {
+      Authorization: usr,
+    },
+  },
+  { withCredentials: true });
+};
