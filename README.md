@@ -29,24 +29,29 @@ A frontend web app that allow user to browse houses and add them to his favourit
 - jest
 
 
+## Rails Back-End Project
+
+[Rails Code](https://github.com/Dipeshtwis/find-your-house/tree/feature/house)
+
 ## Project Screenshot <a name = "sc"></a>
 
 
 ## Home Page
 
-![GUI](src/assets/img/)
+![GUI](src/assets/img/readme/home.png)
 
 ## House page
 
-![GUI](src/assets/img/)
+![GUI](src/assets/img/readme/house.png)
 
 ## House-Detail Page
 
-![GUI](src/assets/img/)
+![GUI](src/assets/img/readme/detail.png)
 
 ## Favourite Page
 
-![GUI](src/assets/img/)
+![GUI](src/assets/img/readme/fav.png)
+
 
 ## Live Demo Link <a name = "ll"></a>
 
