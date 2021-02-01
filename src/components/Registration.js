@@ -3,11 +3,12 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
-import { getUserToken } from '../actions/index';
+import { getUserToken, getError } from '../actions/index';
 import '../assets/stylesheet/registration.css';
 import { API_ID, API_REGISTRATION } from '../api/railshouse';
 
 const Registration = props => {
+  const { getUserToken, getError } = props;
   const [state, setState] = useState({
     username: '',
     email: '',
@@ -32,20 +33,27 @@ const Registration = props => {
   } = state;
 
   const handleSubmit = event => {
-    axios.post(`${API_ID}${API_REGISTRATION}`, {
-      username,
-      email,
-      password,
-      password_confirmation,
-    },
-    { withCredentials: true })
-      .then(res => {
-        if (res.data.token) {
-          localStorage.setItem('token', res.data.token);
-          props.getUserToken(res.data.token);
-        }
-      })
-      .catch(err => err);
+    const incpass = document.getElementById('incpass');
+    if (password !== password_confirmation) {
+      incpass.innerHTML = 'Password is not matching';
+    } else {
+      axios.post(`${API_ID}${API_REGISTRATION}`, {
+        username,
+        email,
+        password,
+        password_confirmation,
+      },
+      { withCredentials: true })
+        .then(res => {
+          if (res.data.token) {
+            localStorage.setItem('token', res.data.token);
+            getUserToken(res.data.token);
+          } else {
+            getError(res.data.error[0]);
+          }
+        })
+        .catch(err => err);
+    }
     event.preventDefault();
   };
 
@@ -93,6 +101,7 @@ const Registration = props => {
           onChange={handleChange}
           required
         />
+        <div className="incpass" id="incpass" />
         <div className="div-btn">
           <button type="submit" className="form-btn">Register</button>
         </div>
@@ -113,10 +122,12 @@ const mapDispatchToProps = dispatch => ({
   getUserToken: data => {
     dispatch(getUserToken(data));
   },
+  getError: error => dispatch(getError(error)),
 });
 
 Registration.propTypes = {
   getUserToken: PropTypes.func.isRequired,
+  getError: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

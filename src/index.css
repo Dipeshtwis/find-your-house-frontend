@@ -24,6 +24,28 @@ code {
   background: url('./assets/img/white.jpg') no-repeat center;
 }
 
+.err-cont {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 80%;
+}
+
+.err-container {
+  background-color: rgb(236, 119, 99);
+  border-radius: 10px;
+  animation-name: MoveTobottom;
+  animation-duration: 0.2s;
+}
+
+.err {
+  color: red;
+  padding: 5px;
+  font-size: 20px;
+}
+
 .home {
   background: url('./assets/img/home2.jpg') center;
   height: 737px;
@@ -128,5 +150,21 @@ code {
 
   .para-fav {
     margin-left: 470px;
+  }
+}
+
+@keyframes MoveTobottom {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  80% {
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

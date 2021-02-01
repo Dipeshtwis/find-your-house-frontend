@@ -31,6 +31,12 @@ input {
   margin: 20px;
 }
 
+.incpass {
+  font-size: 18px;
+  color: red;
+  margin-left: 50px;
+}
+
 .form-btn {
     font-family: Montserrat-Bold;
     font-size: 15px;
