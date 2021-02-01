@@ -1,6 +1,6 @@
 # Homepointr-frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A frontend web app that allow user to browse houses and add them to his favourites list, build with React and Redux and connected to a backend API build using Rails. 
 
 <div align="center">
 
