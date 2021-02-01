@@ -1,5 +1,7 @@
-import { getHouseAction, getHouseDetail, getUserToken, getError } from '../../actions/index';
-import { HOUSE, HOUSEDETAIL, USERTOKEN, ERROR } from '../../actions/index';
+import {
+  getHouseAction, getHouseDetail, getUserToken, getError,
+  HOUSE, HOUSEDETAIL, USERTOKEN, ERROR,
+} from '../../actions/index';
 
 describe('actions', () => {
   it('should get all the house data', () => {
