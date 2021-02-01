@@ -34,16 +34,16 @@ code {
 }
 
 .err-container {
-  background-color: rgb(236, 119, 99);
+  background-color: #ffd9d9;
   border-radius: 10px;
   animation-name: MoveTobottom;
   animation-duration: 0.2s;
 }
 
 .err {
-  color: red;
-  padding: 5px;
-  font-size: 20px;
+  color: #bf0606;
+  padding: 6px;
+  font-size: 24px;
 }
 
 .home {

@@ -6,7 +6,7 @@ import '../assets/stylesheet/house.css';
 
 const HouseCard = props => {
   const { house, alreadyFav } = props;
-  const favMe = () => {
+  const favMe = () => {// eslint-disable-line
     if (!alreadyFav) {
       return (
         <button

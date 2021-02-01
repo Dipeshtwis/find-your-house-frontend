@@ -13,8 +13,7 @@ const Registration = props => {
     username: '',
     email: '',
     password: '',
-    password_confirmation: '',
-    registrationErrors: '',
+    passwordConfirmation: '',
   });
 
   if (localStorage.getItem('token')) {
@@ -29,19 +28,19 @@ const Registration = props => {
     username,
     email,
     password,
-    password_confirmation,
+    passwordConfirmation,
   } = state;
 
   const handleSubmit = event => {
     const incpass = document.getElementById('incpass');
-    if (password !== password_confirmation) {
+    if (password !== passwordConfirmation) {
       incpass.innerHTML = 'Password is not matching';
     } else {
       axios.post(`${API_ID}${API_REGISTRATION}`, {
         username,
         email,
         password,
-        password_confirmation,
+        password_confirmation: passwordConfirmation,
       },
       { withCredentials: true })
         .then(res => {
@@ -94,7 +93,7 @@ const Registration = props => {
 
         <input
           type="password"
-          name="password_confirmation"
+          name="passwordConfirmation"
           placeholder="Confirm your password"
           className="input-cl"
           value={state.password_confirmation}

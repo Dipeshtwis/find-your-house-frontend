@@ -12,9 +12,9 @@ import Registration from './Registration';
 import Favourite from '../containers/Favourite';
 
 const App = ({ getError, error }) => {
-  const renderErrors = () => {
+  const renderErrors = () => {// eslint-disable-line
     if (error && error !== null) {
-      setTimeout(() => { getError(null); }, 1500);
+      setTimeout(() => { getError(null); }, 2500);
       return <Error key={1} msg={error} />;
     }
   };

@@ -12,7 +12,7 @@ const HouseDetails = props => {
   const { houseDetail, getHouseDetail } = props;
 
   const fetchHouseDetail = useCallback(() => {
-    axios.get(`${API_ID}${API_HOUSE}/${props.match.params.id}`)
+    axios.get(`${API_ID}${API_HOUSE}/${props.match.params.id}`)// eslint-disable-line
       .then(res => {
         getHouseDetail(res.data);
       })
@@ -23,7 +23,7 @@ const HouseDetails = props => {
     fetchHouseDetail();
   }, [fetchHouseDetail]);
 
-  const renderHelper = () => {
+  const renderHelper = () => {// eslint-disable-line
     if (!localStorage.getItem('token')) {
       return <Redirect to="/" />;
     }
