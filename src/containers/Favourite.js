@@ -30,7 +30,7 @@ const Favourite = props => {
   }, [fetchFavourite]);
 
   const renderHelper = () => {
-    if (!localStorage.getItem('usr')) {
+    if (!localStorage.getItem('token')) {
       return <Redirect to="/dashboard" />;
     }
     let res = null;

@@ -63,7 +63,7 @@ const HouseDetails = props => {
             type="button"
             onClick={() => {
               handleFavoriteClick(
-                localStorage.getItem('usr'),
+                localStorage.getItem('token'),
                 house.id,
               );
             }}
