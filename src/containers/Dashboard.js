@@ -40,7 +40,7 @@ const Dashboard = props => {
       res = houses.map(house => (<HouseCard key={house.id} house={house} />));
     } else {
       res = (
-        <img className ="loader-img" src={loader} alt="loading..." />
+        <img className="loader-img" src={loader} alt="loading..." />
       );
     }
 

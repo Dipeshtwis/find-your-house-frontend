@@ -43,7 +43,6 @@
 }
 
 @media screen only(min-width: 768px) {
-
   .detail-header {
     flex-direction: column;
   }
