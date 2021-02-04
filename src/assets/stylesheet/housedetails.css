@@ -5,16 +5,16 @@
 
 .link {
   margin: 10px 20px;
-  font-size: 30px;
 }
 
 .link a {
   color: #9c0000;
+  font-size: 36px;
 }
 
 .house-header {
   font-size: 20px;
-  margin: 5px 20px;
+  margin: 5px 10px;
 }
 
 .house-detail {
@@ -43,9 +43,6 @@
 }
 
 @media screen only(min-width: 768px) {
-  .house-detail {
-    flex-direction: row;
-  }
 
   .detail-header {
     flex-direction: column;
