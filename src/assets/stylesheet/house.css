@@ -9,8 +9,8 @@
 
 .btn {
   padding: 4px 8px;
-  background-color: #d50000;
-  border: 2px solid #d50000;
+  background-color: #ff3d00;
+  border: 2px solid #ff3d00;
   border-radius: 5px;
   color: white;
   font-size: 14px;
@@ -18,7 +18,7 @@
 }
 
 .btn:hover {
-  color: #d50000;
+  color: #ff3d00;
   background-color: white;
 }
 

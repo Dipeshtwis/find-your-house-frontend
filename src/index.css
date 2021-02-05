@@ -48,14 +48,14 @@ code {
 }
 
 .err-container {
-  background-color: #ffd9d9;
+  background-color: #ffa270;
   border-radius: 10px;
   animation-name: MoveTobottom;
   animation-duration: 0.2s;
 }
 
 .err {
-  color: #bf0606;
+  color: #a30000;
   padding: 6px;
   font-size: 24px;
 }
@@ -85,8 +85,8 @@ code {
 .navbar-list li {
   margin-left: 20px;
   padding: 4px 8px;
-  background-color: #d50000;
-  border: 2px solid #d50000;
+  background-color: #ff3d00;
+  border: 2px solid #ff3d00;
   border-radius: 5px;
 }
 
@@ -104,7 +104,7 @@ code {
 }
 
 .link-btn:hover a {
-  color: #d50000;
+  color: #ff3d00;
 }
 
 .tagline {
@@ -117,7 +117,7 @@ code {
 .explore {
   padding: 10px;
   text-align: center;
-  background-color: #9c0000;
+  background-color: #c43c00;
   width: 190px;
   margin: 40px auto;
   border-radius: 4px;

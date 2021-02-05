@@ -44,7 +44,7 @@ input {
   width: 100%;
   height: 50px;
   border-radius: 25px;
-  background: #57b846;
+  background: #ff3d00;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,7 +67,7 @@ input {
 }
 
 .text-link a:hover {
-  color: #9c0000;
+  color: #ff3d00;
 }
 
 @media screen and (min-width: 1020px) {
