@@ -31,20 +31,11 @@
 
 .detail-header {
   display: flex;
+  justify-content: space-between;
   margin-top: 10px;
-}
-
-.price {
-  margin-left: 90px;
 }
 
 .house-desc,
 .desc {
   margin-top: 20px;
-}
-
-@media screen only(min-width: 768px) {
-  .detail-header {
-    flex-direction: column;
-  }
 }

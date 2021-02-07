@@ -1,7 +1,12 @@
 .house {
   display: flex;
   flex-wrap: wrap;
+}
+
+.favi {
   margin-top: 40px;
+  text-align: center;
+  padding-top: 15px;
 }
 
 .house-container {
@@ -56,4 +61,15 @@
 .loader-img {
   margin: 30px auto;
   width: 270px;
+}
+
+@media screen and (min-width: 1020px) {
+  .house-img {
+    width: 400px;
+    height: 300px;
+  }
+
+  .house-price {
+    margin-left: 110px;
+  }
 }

@@ -44,6 +44,7 @@ const Dashboard = props => {
 
   return (
     <>
+      <h1 className="favi">Houses</h1>
       <div className="house">
         {renderHelper()}
       </div>

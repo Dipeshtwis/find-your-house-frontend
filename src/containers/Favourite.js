@@ -1,7 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getHouseAction } from '../actions/index';
 import HouseCard from '../components/HouseCard';
@@ -47,14 +47,7 @@ const Favourite = props => {
 
   return (
     <>
-      <div className="navbar">
-        <div className="logo">
-          <h1>Favourites</h1>
-        </div>
-        <div className="list desc">
-          <Link to="/dashboard" className="btn"> Go to Houses</Link>
-        </div>
-      </div>
+      <h1 className="favi">Favourites</h1>
       <div className="house">
         {renderHelper()}
       </div>

@@ -30,14 +30,16 @@ const HouseCard = props => {
       <div>
         <img className="house-img" src={house.photo} alt={house.name} />
       </div>
-      <div>
-        <p>
-          {house.name}
-          <span className="house-price">
+      <div className="detail-header">
+        <div>
+          <p>{house.name}</p>
+        </div>
+        <div>
+          <p>
             {house.price}
-            $/month
-          </span>
-        </p>
+            $ / month
+          </p>
+        </div>
       </div>
       <div className="linker">
         <p><Link to={`/dashboard/${house.id}/${house.name}`}>Check Details</Link></p>
