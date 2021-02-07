@@ -35,8 +35,9 @@ A frontend web app that allow user to browse houses and add them to his favourit
 
 ## Project Screenshot <a name = "sc"></a>
 
+## Will update Soon
 
-## Home Page
+<!-- ## Home Page
 
 ![GUI](src/assets/img/readme/home.png)
 
@@ -50,7 +51,7 @@ A frontend web app that allow user to browse houses and add them to his favourit
 
 ## Favourite Page
 
-![GUI](src/assets/img/readme/fav.png)
+![GUI](src/assets/img/readme/fav.png) -->
 
 
 ## Live Demo Link <a name = "ll"></a>
