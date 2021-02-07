@@ -16,6 +16,10 @@ input {
   margin: 20px;
 }
 
+.deauth {
+  background: url('../img/white.jpg') no-repeat center;
+}
+
 .register-header {
   text-align: center;
   font-size: 34px;

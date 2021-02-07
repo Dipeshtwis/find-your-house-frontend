@@ -57,7 +57,7 @@ const Registration = props => {
   };
 
   return (
-    <div>
+    <div className="auth deauth">
       <h2 className="register-header">Member Registration</h2>
       <form onSubmit={handleSubmit}>
         <input

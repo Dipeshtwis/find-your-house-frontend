@@ -43,7 +43,7 @@ const Login = props => {
   };
 
   return (
-    <div className="parent">
+    <div className="parent auth deauth">
       <h2 className="register-header">Member Login</h2>
       <form onSubmit={handleSubmit}>
         <input

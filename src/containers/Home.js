@@ -8,8 +8,8 @@ const Home = () => {
   }
 
   return (
-    <div className="home">
-      <div className="navbar">
+    <div className="home auth">
+      <div className="navbar-home">
         <div className="logo">
           <img src={logo} alt="Homepointr" className="logo-header" />
         </div>

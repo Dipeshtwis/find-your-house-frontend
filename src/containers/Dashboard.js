@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { getUserToken, getHouseAction } from '../actions/index';
+import { getHouseAction } from '../actions/index';
 import {
   API_ID, API_HOUSE,
 } from '../api/railshouse';
@@ -12,7 +12,7 @@ import HouseCard from '../components/HouseCard';
 import '../assets/stylesheet/house.css';
 
 const Dashboard = props => {
-  const { getHouse, houses, getUserToken } = props;
+  const { getHouse, houses } = props;
 
   const fetchHouse = useCallback(() => {
     axios.get(`${API_ID}${API_HOUSE}`)
@@ -25,11 +25,6 @@ const Dashboard = props => {
   useEffect(() => {
     fetchHouse();
   }, [fetchHouse]);
-
-  const handleLogoutClick = () => {
-    localStorage.removeItem('token');
-    getUserToken('');
-  };
 
   const renderHelper = () => {
     if (!localStorage.getItem('token')) {
@@ -49,15 +44,6 @@ const Dashboard = props => {
 
   return (
     <>
-      <div className="navbar">
-        <div className="logo">
-          <h1>Houses</h1>
-        </div>
-        <div className="list">
-          <Link to="/favourite" className="btn"> Go to Favourite</Link>
-          <button type="button" className="btn" onClick={() => handleLogoutClick()}>Logout</button>
-        </div>
-      </div>
       <div className="house">
         {renderHelper()}
       </div>
@@ -67,12 +53,10 @@ const Dashboard = props => {
 
 const mapStateToProps = state => ({
   houses: state.houses,
-  token: state.token,
 });
 
 const mapDispatchToProps = dispatch => ({
   getHouse: data => dispatch(getHouseAction(data)),
-  getUserToken: data => dispatch(getUserToken(data)),
 });
 
 Dashboard.defaultProps = {
@@ -88,7 +72,6 @@ Dashboard.defaultProps = {
 Dashboard.propTypes = {
   houses: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   getHouse: PropTypes.func.isRequired,
-  getUserToken: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

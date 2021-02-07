@@ -40,7 +40,7 @@ code {
 
 .err-cont {
   position: absolute;
-  top: 10px;
+  top: 40px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 3;
@@ -60,12 +60,17 @@ code {
   font-size: 24px;
 }
 
+.auth {
+  position: fixed;
+  top: 0;
+}
+
 .home {
   background: url('./assets/img/home2.jpg') center;
   height: 737px;
 }
 
-.navbar {
+.navbar-home {
   display: flex;
   justify-content: space-around;
 }
@@ -145,15 +150,15 @@ code {
 }
 
 @media screen and (min-width: 1020px) {
-  .navbar {
+  .navbar-home {
     justify-content: space-between;
   }
 
-  .navbar .logo {
+  .navbar-home .logo {
     margin-left: 50px;
   }
 
-  .navbar .list {
+  .navbar-home .list {
     margin-right: 70px;
   }
 

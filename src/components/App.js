@@ -10,6 +10,7 @@ import { getError } from '../actions/index';
 import Error from './Error';
 import Registration from './Registration';
 import Favourite from '../containers/Favourite';
+import Navbar from './Navbar';
 
 const App = ({ getError, error }) => {
   const renderErrors = () => {// eslint-disable-line
@@ -22,6 +23,7 @@ const App = ({ getError, error }) => {
   return (
     <div className="App">
       <BrowserRouter>
+        <Navbar />
         <div className="err-cont">
           {renderErrors()}
         </div>
