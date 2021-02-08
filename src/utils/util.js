@@ -13,3 +13,5 @@ export const handleFavoriteClick = (usr, houseId) => {
 };
 
 export const fetchHouseDetail = id => axios.get(`${API_ID}${API_HOUSE}/${id}`);
+
+export const fetchHouse = () => axios.get(`${API_ID}${API_HOUSE}`);
