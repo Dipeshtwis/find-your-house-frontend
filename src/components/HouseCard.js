@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import handleFavoriteClick from '../utils/favouriteutil';
+import { handleFavoriteClick } from '../utils/util';
 import '../assets/stylesheet/house.css';
 
 const HouseCard = props => {

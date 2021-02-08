@@ -1,33 +1,27 @@
-import React, { useCallback, useEffect } from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getHouseDetail } from '../actions/index';
 import '../assets/stylesheet/housedetails.css';
-import handleFavoriteClick from '../utils/favouriteutil';
-import { API_ID, API_HOUSE } from '../api/railshouse';
+import { handleFavoriteClick, fetchHouseDetail } from '../utils/util';
 
-const HouseDetails = props => {
-  const { houseDetail, getHouseDetail } = props;
-
-  const fetchHouseDetail = useCallback(() => {
-    axios.get(`${API_ID}${API_HOUSE}/${props.match.params.id}`)// eslint-disable-line
+class HouseDetails extends Component {
+  componentDidMount = () => {
+    fetchHouseDetail(this.props.match.params.id) //eslint-disable-line
       .then(res => {
+        const { getHouseDetail } = this.props;
         getHouseDetail(res.data);
       })
       .catch(err => err);
-  }, [getHouseDetail]);
+  }
 
-  useEffect(() => {
-    fetchHouseDetail();
-  }, [fetchHouseDetail]);
-
-  const renderHelper = () => {// eslint-disable-line
+  renderHelper = () => {// eslint-disable-line
     if (!localStorage.getItem('token')) {
       return <Redirect to="/" />;
     }
 
+    const { houseDetail } = this.props;
     if (houseDetail) {
       const house = houseDetail;
       return (
@@ -75,21 +69,24 @@ const HouseDetails = props => {
     }
   };
 
-  return (
-    <>
-      <div className="container">
-        <div className="link">
-          <Link to="/dashboard"> &#8617;</Link>
+  render() {
+    const { houseDetail } = this.props;
+    return (
+      <>
+        <div className="container">
+          <div className="link">
+            <Link to="/dashboard"> &#8617;</Link>
+          </div>
+          <div className="house-header">
+            <h2 className="det">{houseDetail.name}</h2>
+          </div>
         </div>
-        <div className="house-header">
-          <h2 className="det">{houseDetail.name}</h2>
-        </div>
-      </div>
 
-      {renderHelper()}
-    </>
-  );
-};
+        {this.renderHelper()}
+      </>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
   houseDetail: state.houseDetail,
