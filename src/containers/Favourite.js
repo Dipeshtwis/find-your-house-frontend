@@ -1,39 +1,30 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { fetchFavourite } from '../utils/util';
 import { getHouseAction } from '../actions/index';
 import HouseCard from '../components/HouseCard';
-import { API_ID, API_FAVOURITE } from '../api/railshouse';
 
-const Favourite = props => {
-  const { houses, getHouse } = props;
-
-  const fetchFavourite = useCallback(() => {
-    axios.get(`${API_ID}${API_FAVOURITE}`, {
-      headers: {
-        Authorization: localStorage.getItem('token'),
-      },
-    })
+class Favourite extends Component {
+  componentDidMount = () => {
+    fetchFavourite(localStorage.getItem('token'))
       .then(res => {
         const uniq = [...new Set(res.data.map(x => x.id))].map(
           id => res.data.find(s => s.id === id),
         );
+        const { getHouse } = this.props;
         getHouse(uniq);
       })
       .catch(err => err);
-  }, [getHouse]);
+  }
 
-  useEffect(() => {
-    fetchFavourite();
-  }, [fetchFavourite]);
-
-  const renderHelper = () => {
+  renderHelper = () => {
     if (!localStorage.getItem('token')) {
       return <Redirect to="/dashboard" />;
     }
     let res = null;
+    const { houses } = this.props;
     if (houses.length > 0) {
       res = houses.map(house => (<HouseCard key={house.id} alreadyFav house={house} />));
     } else {
@@ -45,15 +36,17 @@ const Favourite = props => {
     return res;
   };
 
-  return (
-    <>
-      <h1 className="favi">Favourites</h1>
-      <div className="house">
-        {renderHelper()}
-      </div>
-    </>
-  );
-};
+  render() {
+    return (
+      <>
+        <h1 className="favi">Favourites</h1>
+        <div className="house">
+          {this.renderHelper()}
+        </div>
+      </>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
   houses: state.houses,

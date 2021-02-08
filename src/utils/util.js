@@ -12,6 +12,12 @@ export const handleFavoriteClick = (usr, houseId) => {
   { withCredentials: true });
 };
 
+export const fetchFavourite = token => axios.get(`${API_ID}${API_FAVOURITE}`, {
+  headers: {
+    Authorization: token,
+  },
+});
+
 export const fetchHouseDetail = id => axios.get(`${API_ID}${API_HOUSE}/${id}`);
 
 export const fetchHouse = () => axios.get(`${API_ID}${API_HOUSE}`);
