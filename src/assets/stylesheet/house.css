@@ -18,18 +18,32 @@
   margin-top: 10px;
 }
 
+.btn-success,
 .btn {
   padding: 4px 8px;
-  background-color: #ff3d00;
-  border: 2px solid #ff3d00;
   border-radius: 5px;
   color: white;
   font-size: 14px;
   margin-right: 5px;
 }
 
+.btn {
+  background-color: #ff3d00;
+  border: 2px solid #ff3d00;
+}
+
+.btn-success {
+  background-color: #2e7d32;
+  border: 2px solid #2e7d32;
+}
+
 .btn:hover {
   color: #ff3d00;
+  background-color: white;
+}
+
+.btn-success:hover {
+  color: #2e7d32;
   background-color: white;
 }
 

@@ -119,6 +119,8 @@ Give a ⭐️ if you like this project!
 
 ## :clap: Acknowledgements
 
+- Design Idea by: [Alexey Savitskiy](https://www.behance.net/gallery/37706679/Circle-(Landing-page-Dashboard-Mobile-App))
+
 - Microverse: [@microverse](https://www.microverse.org/)
 
 ## 📝 License
