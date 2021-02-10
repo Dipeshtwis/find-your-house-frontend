@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
 import { getUserToken, getError } from '../actions/index';
 import '../assets/stylesheet/registration.css';
-import { API_ID, API_REGISTRATION } from '../api/railshouse';
+import { handleRegister } from '../utils/util';
 
 const Registration = props => {
   const { getUserToken, getError } = props;
@@ -36,13 +35,7 @@ const Registration = props => {
     if (password !== passwordConfirmation) {
       incpass.innerHTML = 'Password is not matching';
     } else {
-      axios.post(`${API_ID}${API_REGISTRATION}`, {
-        username,
-        email,
-        password,
-        password_confirmation: passwordConfirmation,
-      },
-      { withCredentials: true })
+      handleRegister(username, email, password, passwordConfirmation)
         .then(res => {
           if (res.data.token) {
             localStorage.setItem('token', res.data.token);

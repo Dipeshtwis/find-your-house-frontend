@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
 import { getUserToken, getError } from '../actions/index';
-import { API_ID, API_LOGIN } from '../api/railshouse';
+import { handleLogin } from '../utils/util';
 
 const Login = props => {
   const { getUserToken, getError } = props;
@@ -25,11 +24,7 @@ const Login = props => {
   const { email, password } = state;
 
   const handleSubmit = event => {
-    axios.post(`${API_ID}${API_LOGIN}`, {
-      email,
-      password,
-    },
-    { withCredentials: true })
+    handleLogin(email, password)
       .then(res => {
         if (res.data.token) {
           localStorage.setItem('token', res.data.token);
