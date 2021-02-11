@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchFavourite } from '../utils/util';
-import { getHouseAction } from '../actions/index';
-import HouseCard from '../components/HouseCard';
+import { getFavAction } from '../actions/index';
+import FavCard from '../components/FavCard';
 
 class Favourite extends Component {
   componentDidMount = () => {
@@ -13,8 +13,8 @@ class Favourite extends Component {
         const uniq = [...new Set(res.data.map(x => x.id))].map(
           id => res.data.find(s => s.id === id),
         );
-        const { getHouse } = this.props;
-        getHouse(uniq);
+        const { getFav } = this.props;
+        getFav(uniq);
       })
       .catch(err => err);
   }
@@ -24,9 +24,9 @@ class Favourite extends Component {
       return <Redirect to="/dashboard" />;
     }
     let res = null;
-    const { houses } = this.props;
-    if (houses.length > 0) {
-      res = houses.map(house => (<HouseCard key={house.id} alreadyFav house={house} />));
+    const { favs } = this.props;
+    if (favs.length > 0) {
+      res = favs.map(fav => (<FavCard key={fav.id} fav={fav} />));
     } else {
       res = (
         <p className="para-fav">You have no favourite House</p>
@@ -49,15 +49,15 @@ class Favourite extends Component {
 }
 
 const mapStateToProps = state => ({
-  houses: state.houses,
+  favs: state.favs,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getHouse: data => dispatch(getHouseAction(data)),
+  getFav: data => dispatch(getFavAction(data)),
 });
 
 Favourite.defaultProps = {
-  houses: PropTypes.shape({
+  favs: PropTypes.shape({
     id: '',
     name: '',
     price: '',
@@ -67,8 +67,8 @@ Favourite.defaultProps = {
 };
 
 Favourite.propTypes = {
-  houses: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  getHouse: PropTypes.func.isRequired,
+  favs: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  getFav: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favourite);
