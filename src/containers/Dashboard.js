@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getHouseAction } from '../actions/index';
-import { fetchHouse } from '../utils/util';
+import { getHouseAction, getFavAction } from '../actions/index';
+import { fetchHouse, fetchFavourite } from '../utils/util';
 import loader from '../assets/img/loader.gif';
 import HouseCard from '../components/HouseCard';
 import '../assets/stylesheet/house.css';
@@ -14,6 +14,16 @@ class Dashboard extends Component {
       .then(res => {
         const { getHouse } = this.props;
         getHouse(res.data);
+      })
+      .catch(err => err);
+
+    fetchFavourite(localStorage.getItem('token'))
+      .then(res => {
+        const uniq = [...new Set(res.data.map(x => x.id))].map(
+          id => res.data.find(s => s.id === id),
+        );
+        const { getFav } = this.props;
+        getFav(uniq);
       })
       .catch(err => err);
   }
@@ -53,6 +63,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getHouse: data => dispatch(getHouseAction(data)),
+  getFav: data => dispatch(getFavAction(data)),
 });
 
 Dashboard.defaultProps = {
@@ -68,6 +79,7 @@ Dashboard.defaultProps = {
 Dashboard.propTypes = {
   houses: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   getHouse: PropTypes.func.isRequired,
+  getFav: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

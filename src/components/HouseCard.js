@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { handleFavoriteClick } from '../utils/util';
@@ -6,27 +6,38 @@ import '../assets/stylesheet/house.css';
 
 const HouseCard = props => {
   const { house, alreadyFav } = props;
-  const [btn, setBtn] = useState('Add to Favorite');
-  const [className, setClassName] = useState('btn');
   const favMe = () => {// eslint-disable-line
     if (!alreadyFav) {
       return (
         <button
-          className={className}
+          className="btn"
           type="button"
           onClick={() => {
             handleFavoriteClick(
               localStorage.getItem('token'),
               house.id,
-              setBtn('Added to Favorite'),
-              setClassName('btn-success'),
             );
           }}
         >
-          {btn}
+          Add to Favorite
         </button>
       );
     }
+
+    return (
+      <button
+        className="btn-success"
+        type="button"
+        onClick={() => {
+          handleFavoriteClick(
+            localStorage.getItem('token'),
+            house.id,
+          );
+        }}
+      >
+        Added to Favorite
+      </button>
+    );
   };
 
   return (
