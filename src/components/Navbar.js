@@ -42,17 +42,17 @@ const Navbar = props => {
           }
         <ul>
           <li>
-            <Link onClick={close} to="/dashboard">
+            <Link onClick={close} to="/dashboard" className="navi">
               Houses
             </Link>
 
           </li>
           <li>
-            <Link onClick={close} to="/favourite">
+            <Link onClick={close} to="/favourite" className="navi">
               Favourites
             </Link>
           </li>
-          <li className="handleLogoutClick" onClick={handleLogoutClick}><Link onClick={close} to="/">Sign out</Link> </li> { // eslint-disable-line
+          <li className="handleLogoutClick" onClick={handleLogoutClick}><Link onClick={close} to="/" className="navi">Sign out</Link> </li> { // eslint-disable-line
           }
         </ul>
       </div>
