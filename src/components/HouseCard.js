@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { handleFavoriteClick } from '../utils/util';
 import '../assets/stylesheet/house.css';
 
 const HouseCard = props => {
-  const { house, alreadyFav } = props;
+  const { house, favs } = props;
   const favMe = () => {// eslint-disable-line
-    if (!alreadyFav) {
+    let fa = false;
+    for (let i = 0; i < favs.length; i += 1) {
+      if (favs[i].id === house.id) fa = true;
+    }
+
+    if (!fa) {
       return (
         <button
           className="btn"
@@ -28,12 +34,6 @@ const HouseCard = props => {
       <button
         className="btn-success"
         type="button"
-        onClick={() => {
-          handleFavoriteClick(
-            localStorage.getItem('token'),
-            house.id,
-          );
-        }}
       >
         Added to Favorite
       </button>
@@ -66,12 +66,21 @@ const HouseCard = props => {
   );
 };
 
+const mapStateToProps = state => ({
+  favs: state.favs,
+});
+
 HouseCard.defaultProps = {
-  alreadyFav: false,
+  favs: PropTypes.shape({
+    id: '',
+    name: '',
+    price: '',
+    description: '',
+    photo: '',
+  }),
 };
 
 HouseCard.propTypes = {
-  alreadyFav: PropTypes.bool,
   house: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
@@ -79,6 +88,7 @@ HouseCard.propTypes = {
     description: PropTypes.string,
     photo: PropTypes.string,
   }).isRequired,
+  favs: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
-export default HouseCard;
+export default connect(mapStateToProps, null)(HouseCard);
