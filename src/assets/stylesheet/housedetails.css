@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  padding-top: 15px;
+  margin-top: 40px;
+}
+
+.link {
+  margin: 10px 20px;
+}
+
+.link a {
+  color: #ff3d00;
+  font-size: 36px;
+}
+
+.house-header {
+  font-size: 20px;
+  margin: 5px 10px;
+}
+
+.house-detail {
+  display: flex;
+  flex-direction: column;
+  margin: 7px auto;
+  width: 90%;
+}
+
+.img {
+  width: 324px;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.house-desc,
+.desc {
+  margin-top: 20px;
+}

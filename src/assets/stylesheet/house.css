@@ -1,0 +1,89 @@
+.house {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.favi {
+  margin-top: 40px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.house-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.list button {
+  margin-top: 10px;
+}
+
+.btn-success,
+.btn {
+  padding: 4px 8px;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.btn {
+  background-color: #ff3d00;
+  border: 2px solid #ff3d00;
+}
+
+.btn-success {
+  background-color: #2e7d32;
+  border: 2px solid #2e7d32;
+}
+
+.btn:hover {
+  color: #ff3d00;
+  background-color: white;
+}
+
+.btn-success:hover {
+  color: #2e7d32;
+  background-color: white;
+}
+
+.last {
+  margin-top: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  border: 2px solid #cfd8dc;
+  padding: 5px;
+}
+
+.house-img {
+  width: 330px;
+  height: 250px;
+}
+
+.house-price {
+  margin-left: 90px;
+}
+
+.linker {
+  margin: 7px auto;
+}
+
+.loader-img {
+  margin: 30px auto;
+  width: 270px;
+}
+
+@media screen and (min-width: 1020px) {
+  .house-img {
+    width: 400px;
+    height: 300px;
+  }
+
+  .house-price {
+    margin-left: 110px;
+  }
+}
