@@ -54,7 +54,7 @@ A frontend web app that allow user to browse houses and add them to his favourit
 
 ## Live Demo Link <a name = "ll"></a>
 
-[Link Demo](https://homepointrdeep.herokuapp.com/)
+[Link Demo](https://homepointrdeep.netlify.app/)
 
 
 ## Getting Started <a name = "gs"></a>
